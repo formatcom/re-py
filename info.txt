@@ -1,0 +1,2 @@
+Hola mi nombe es {{NAME}} y
+me gusta {{LIKE}} fin :3
