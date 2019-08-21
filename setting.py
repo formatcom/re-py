@@ -1,0 +1,2 @@
+# file setting
+NAME='Vinicio'

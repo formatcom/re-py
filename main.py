@@ -5,10 +5,7 @@
 import re
 
 DATA = None
-DUMMY_DATA = { # YO DEBERIA SER UN ARCHIVO APARTE
-    'NAME': 'VINICIO',
-    'LIKE': 'PROGRAMAR',
-} # IGNORADO PERO CON TEMPLATE PARA CREARLO
+DUMMY_DATA = __import__('setting')
 
 # leemos el archivo y lo carga de manera temporal
 # la mejor forma de manejar esto de forma dinamica es
@@ -23,9 +20,7 @@ keys = p.findall(DATA)
 
 # map variable
 for key in keys:
-    _p = re.compile('{{{KEY}}}'.format(**{
-        'KEY': key,
-    }))
-    DATA = re.sub(_p, DUMMY_DATA.get(key), DATA)
+    _p = re.compile('{{%s}}' % key)
+    DATA = re.sub(_p, getattr(DUMMY_DATA, key, 'Undefined'), DATA)
 
 print(DATA)
